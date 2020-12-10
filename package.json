@@ -1,0 +1,55 @@
+{
+  "name": "vue-lazyloading-image",
+  "main": "dist/lazyloading.js",
+  "module": "dist/lazyloading.esm.js",
+  "version": "0.0.1",
+  "description": "A lazy loading for image",
+  "keywords": [
+    "javascript",
+    "rollup",
+    "vuejs",
+    "stylus"
+  ],
+  "author": "voidjmp",
+  "license": "MIT",
+  "browserslist": [
+    "iOS >= 7",
+    "Android >= 4.0",
+    "last 2 versions",
+    "> 1%",
+    "not ie <= 8"
+  ],
+  "scripts": {
+    "build": "npx gulp",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "autoprefixer": "^9.1.5",
+    "babel-loader": "^8.0.4",
+    "cssnano": "^4.1.4",
+    "dot-prop": ">=5.1.1",
+    "gulp": "^3.9.1",
+    "gulp-header": "^2.0.5",
+    "gulp-image": "^6.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-stylus": "^2.7.0",
+    "kind-of": ">=6.0.3",
+    "lodash": ">=4.17.19",
+    "postcss": "^7.0.5",
+    "postcss-pxtorem": "^4.0.1",
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-json": "^3.1.0",
+    "stylus": "^0.54.5",
+    "uglify-js": "^3.4.9",
+    "zlib": "^1.0.5"
+  }
+}

@@ -1,0 +1,17 @@
+.s-image {
+  background-color: rgb(230, 230, 230);
+  animation: s-loading-animation 1s ease infinite forwards;
+  width: 100%;
+}
+
+@keyframes s-loading-animation {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
