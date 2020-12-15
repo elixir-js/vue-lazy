@@ -1,0 +1,30 @@
+.s-image {
+  background-color: #e6e6e6;
+  -webkit-animation: s-loading-animation 1s ease infinite forwards;
+          animation: s-loading-animation 1s ease infinite forwards;
+  width: 100%;
+}
+@-webkit-keyframes s-loading-animation {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes s-loading-animation {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
