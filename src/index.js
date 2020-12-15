@@ -2,6 +2,8 @@ import lazyload from './lazyloading'
 import { version } from '../package.json'
 
 lazyload.version = version
-Vue.directive('lazyload', lazyload)
+lazyload.install = function(Vue) {
+  Vue.directive(Slider.name, Slider)
+}
 
 export default lazyload
