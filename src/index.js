@@ -1,5 +1,7 @@
 import lazyload from './lazyloading'
+import { version } from '../package.json'
 
-Vue.lazyload('lazyload', lazyload)
+lazyload.version = version
+Vue.directive('lazyload', lazyload)
 
 export default lazyload

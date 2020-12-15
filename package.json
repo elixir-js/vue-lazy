@@ -2,13 +2,14 @@
   "name": "vue-lazzy-image",
   "main": "dist/lazyloading.js",
   "module": "dist/lazyloading.esm.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A lazy loading for image",
   "keywords": [
     "javascript",
     "rollup",
     "vuejs",
-    "stylus"
+    "stylus",
+    "vue"
   ],
   "author": "voidjmp",
   "license": "MIT",

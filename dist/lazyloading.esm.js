@@ -1,5 +1,5 @@
 /*!
- * vue-lazy-loading v0.0.3
+ * vue-lazy-loading v0.0.4
  * (c) 2016-2020 voidjmp
  * Released under the MIT License.
  */
@@ -51,6 +51,9 @@ var lazyload = {
   }
 };
 
-Vue.lazyload('lazyload', lazyload);
+var version = "0.0.4";
+
+lazyload.version = version;
+Vue.directive('lazyload', lazyload);
 
 export default lazyload;
