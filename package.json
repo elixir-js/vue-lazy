@@ -1,5 +1,5 @@
 {
-  "name": "vue-lazyloading-image",
+  "name": "vue-lazzy-image",
   "main": "dist/lazyloading.js",
   "module": "dist/lazyloading.esm.js",
   "version": "0.0.1",
@@ -12,6 +12,14 @@
   ],
   "author": "voidjmp",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VoIdJMp/vue-lazy/issues"
+  },
+  "homepage": "https://github.com/VoIdJMp/vue-lazy",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/VoIdJMp/vue-lazy.git"
+  },
   "browserslist": [
     "iOS >= 7",
     "Android >= 4.0",
@@ -51,5 +59,6 @@
     "stylus": "^0.54.5",
     "uglify-js": "^3.4.9",
     "zlib": "^1.0.5"
-  }
+  },
+  "dependencies": {}
 }

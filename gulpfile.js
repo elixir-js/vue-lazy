@@ -171,11 +171,7 @@ gulp.task('css', () => {
     .pipe(postcss([
       autoprefixer()
     ]))
-    .pipe(header('/**\n' +
-      ' * vue-lazy-loading v' + version + '\n' +
-      ' * (c) 2016-' + new Date().getFullYear() + ' voidjmp\n' +
-      ' * Released under the MIT License.\n' +
-      ' */\n'))
+  
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist')).on('end', () => {
        gulp.src('./dist/lazy_loading.css')
