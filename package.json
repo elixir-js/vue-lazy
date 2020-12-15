@@ -28,7 +28,7 @@
     "not ie <= 8"
   ],
   "scripts": {
-    "build": "npx gulp",
+    "build": "npx gulp"
   },
   "resolutions": {
     "graceful-fs": "^4.2.4"
