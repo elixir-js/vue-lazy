@@ -1,10 +1,12 @@
 export default {
   inserted: (el) => {
-    const className = el.getAttribute('class')
-    const src = el.getAttribute('src')
-    el.setAttribute('class', 's-image')
-    el.setAttribute('style', 'height: 170px;')
-    el.setAttribute('src', require('./assets/img/img_skeleton.png'))
+    const style = el.dataset.style
+    const img = el.dataset.image
+    const className = el.getAttribute('class');
+    const src = el.getAttribute('src');
+    el.setAttribute('class', 's-image');
+    el.setAttribute('style', !style ? 'height: 170px;' : style);
+    el.setAttribute('src', !img ? require('./assets/img/img_skeleton.png') : img);
 
     const loadImage = () => {
       el.src = src
