@@ -29,9 +29,9 @@ export default {
     }
 
     el.onload = () => {
-      if (el.getAttribute('src') !== '../assets/img/img_skeleton.png') {
-        el.setAttribute('style', '')
-        el.setAttribute('class', className)
+      if (el.getAttribute('src') !== 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALwAAADGAQMAAABSPnhPAAAAA1BMVEXm5uSlVuPDAAAAG0lEQVR4Ae3BMQEAAADCIPunNsN+YAAAAABAdBNWAAHMZ56dAAAAAElFTkSuQmCC') {
+        el.setAttribute('style', '');
+        el.setAttribute('class', className);
       }
     }
 
