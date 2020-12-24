@@ -12,11 +12,13 @@
 
   var lazyload = {
     inserted: el => {
+      const style = el.dataset.style;
+      const img = el.dataset.image;
       const className = el.getAttribute('class');
       const src = el.getAttribute('src');
       el.setAttribute('class', 's-image');
-      el.setAttribute('style', 'height: 170px;');
-      el.setAttribute('src', require('./assets/img/img_skeleton.png'));
+      el.setAttribute('style', !style ? 'height: 170px;' : style);
+      el.setAttribute('src', !img ? require('./assets/img/img_skeleton.png') : img);
 
       const loadImage = () => {
         el.src = src;
@@ -34,14 +36,14 @@
       const lazyImage = () => {
         const options = {
           root: null,
-          threshold: 0.1
+          threshold: 1
         };
         const observer = new IntersectionObserver(callback, options);
         observer.observe(el);
       };
 
       el.onload = () => {
-        if (el.getAttribute('src') !== '../assets/img/img_skeleton.png') {
+        if (el.getAttribute('src') !== 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALwAAADGAQMAAABSPnhPAAAAA1BMVEXm5uSlVuPDAAAAG0lEQVR4Ae3BMQEAAADCIPunNsN+YAAAAABAdBNWAAHMZ56dAAAAAElFTkSuQmCC') {
           el.setAttribute('style', '');
           el.setAttribute('class', className);
         }
