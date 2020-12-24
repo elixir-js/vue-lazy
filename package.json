@@ -8,7 +8,8 @@
     "javascript",
     "rollup",
     "vuejs",
-    "stylus"
+    "stylus",
+    "vue"
   ],
   "author": "voidjmp",
   "license": "MIT",
