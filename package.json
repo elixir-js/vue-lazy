@@ -8,7 +8,8 @@
     "javascript",
     "rollup",
     "vuejs",
-    "stylus"
+    "stylus",
+    "vue"
   ],
   "author": "voidjmp",
   "license": "MIT",
@@ -28,8 +29,7 @@
     "not ie <= 8"
   ],
   "scripts": {
-    "build": "npx gulp",
-    "preinstall": "npx npm-force-resolutions"
+    "build": "npx gulp"
   },
   "resolutions": {
     "graceful-fs": "^4.2.4"

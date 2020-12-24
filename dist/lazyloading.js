@@ -1,5 +1,5 @@
 /*!
- * vue-lazy-loading v0.0.3
+ * vue-lazy-loading v0.0.6
  * (c) 2016-2020 voidjmp
  * Released under the MIT License.
  */
@@ -59,7 +59,13 @@
     }
   };
 
-  Vue.lazyload('lazyload', lazyload);
+  var version = "0.0.6";
+
+  lazyload.version = version;
+
+  lazyload.install = function (Vue) {
+    Vue.directive(Slider.name, Slider);
+  };
 
   return lazyload;
 
