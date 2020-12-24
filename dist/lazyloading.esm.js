@@ -53,6 +53,12 @@ var lazyload = {
   }
 };
 
-Vue.lazyload('lazyload', lazyload);
+var version = "0.0.6";
+
+lazyload.version = version;
+
+lazyload.install = function (Vue) {
+  Vue.directive(Slider.name, Slider);
+};
 
 export default lazyload;
