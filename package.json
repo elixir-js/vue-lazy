@@ -2,7 +2,7 @@
   "name": "vue-lazzy-image",
   "main": "dist/lazyloading.js",
   "module": "dist/lazyloading.esm.js",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "A lazy loading for image",
   "keywords": [
     "javascript",
@@ -29,8 +29,7 @@
     "not ie <= 8"
   ],
   "scripts": {
-    "build": "npx gulp",
-    "preinstall": "npx npm-force-resolutions"
+    "build": "npx gulp"
   },
   "resolutions": {
     "graceful-fs": "^4.2.4"
