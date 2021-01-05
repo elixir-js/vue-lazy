@@ -1,12 +1,17 @@
 /*!
- * vue-lazy-loading v0.0.12
- * (c) 2016-2020 voidjmp
+ * vue-lazy-loading v0.0.13
+ * (c) 2016-2021 voidjmp
  * Released under the MIT License.
  */
 
+/* eslint-disable global-require */
+
+/* eslint-disable no-param-reassign */
 var lazyload = {
   inserted: el => {
-    const style = el.dataset.style;
+    const {
+      style
+    } = el.dataset;
     const img = el.dataset.image;
     const className = el.getAttribute('class');
     const src = el.getAttribute('src');
@@ -53,11 +58,12 @@ var lazyload = {
   }
 };
 
-var version = "0.0.12";
+var version = "0.0.13";
 
 lazyload.version = version;
 
 lazyload.install = function (Vue) {
+  // eslint-disable-next-line no-undef
   Vue.directive(Slider.name, Slider);
 };
 

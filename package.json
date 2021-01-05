@@ -53,7 +53,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.2.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-header": "^2.0.5",
     "gulp-image": "^6.2.1",
     "gulp-postcss": "^8.0.0",
