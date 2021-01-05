@@ -1,15 +1,14 @@
+/* eslint-disable global-require */
+/* eslint-disable no-param-reassign */
 export default {
     inserted: (el) => {
-        const style = el.dataset.style;
+        const { style } = el.dataset;
         const img = el.dataset.image;
         const className = el.getAttribute('class');
         const src = el.getAttribute('src');
         el.setAttribute('class', 's-image');
         el.setAttribute('style', !style ? 'height: 170px;' : style);
-        el.setAttribute(
-            'src',
-            !img ? require('./assets/img/img_skeleton.png') : img,
-        );
+        el.setAttribute('src', !img ? require('./assets/img/img_skeleton.png') : img);
 
         const loadImage = () => {
             el.src = src;
