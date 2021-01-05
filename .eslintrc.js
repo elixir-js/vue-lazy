@@ -10,6 +10,6 @@ module.exports = {
     },
     rules: {
         indent: ['error', 4],
-        'operator-linebreak': [2, 'after', { overrides: { '?': 'after' } }],
+        'operator-linebreak': [2, 'after', { overrides: { '?': 'after', ':': 'after' } }],
     },
 };
