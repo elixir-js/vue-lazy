@@ -82,6 +82,7 @@ export default {
               ]
           );
     },
+    
     /**
      * Load image from finish observer
      * @returns {null}
@@ -90,6 +91,7 @@ export default {
         this.$el.src = this.image.src;
         this.firstStepToLoad = false;
     },
+
     /**
      * Event on load image
      * @returns {null}
@@ -99,6 +101,7 @@ export default {
           this.changeElementAttribute(['class', 'style'], [this.image.class, '']);
       }
     },
+
     /**
      * Event on error image
      * @returns {null}
@@ -109,6 +112,7 @@ export default {
             [this.image.class, '', require('./assets/img/photo.png')]
         );
     },
+
     /**
      * Method to check intersecting event
      * @params {Array, Observer} entries, observer
@@ -122,6 +126,7 @@ export default {
         }
       })
     },
+
     /**
      * Method to change element
      * @params {Array, Array} keys, values
