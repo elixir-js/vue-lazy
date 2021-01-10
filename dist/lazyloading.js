@@ -1,5 +1,5 @@
 /*!
- * vue-lazy-loading v0.1.1
+ * vue-lazy-loading v0.1.3
  * (c) 2016-2021 voidjmp
  * Released under the MIT License.
  */
@@ -32,7 +32,7 @@
     root: null,
     threshold: 1
   };
-  var lazyload = {
+  var CoreLazyLoading = {
     name: 'CoreLazyLoading',
     props: {
       placeholderImage: {
@@ -140,15 +140,15 @@
     }
   };
 
-  var version = "0.1.1";
+  var version = "0.1.3";
 
-  lazyload.version = version;
+  CoreLazyLoading.version = version;
 
-  lazyload.install = function (Vue) {
+  CoreLazyLoading.install = function (Vue) {
     // eslint-disable-next-line no-undef
-    Vue.component(Slider.name, Slider);
+    Vue.component(CoreLazyLoading.name, CoreLazyLoading);
   };
 
-  return lazyload;
+  return CoreLazyLoading;
 
 })));
