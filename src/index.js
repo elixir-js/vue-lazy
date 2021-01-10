@@ -1,10 +1,10 @@
-import lazyload from './lazyloading';
+import CoreLazyLoading from './lazyloading';
 import { version } from '../package.json';
 
-lazyload.version = version;
-lazyload.install = function (Vue) {
+CoreLazyLoading.version = version;
+CoreLazyLoading.install = function (Vue) {
     // eslint-disable-next-line no-undef
-    Vue.component(Slider.name, Slider);
+    Vue.component(CoreLazyLoading.name, CoreLazyLoading);
 };
 
-export default lazyload;
+export default CoreLazyLoading;
