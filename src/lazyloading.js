@@ -35,7 +35,7 @@ export default {
             },
         },
 
-        onErrorImage: {
+        errorImage: {
             type: Object,
             default: () => {
                 return errorImageDefault;
@@ -117,7 +117,7 @@ export default {
         onErrorImage() {
             this.changeElementAttribute(
                 ['class', 'style', 'src'],
-                [this.image.class, '', require('./assets/img/photo.png')],
+                [this.image.class, '', this.errorImage.src],
             );
         },
         /**
