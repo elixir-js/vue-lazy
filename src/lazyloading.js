@@ -6,90 +6,90 @@
  * {Object}
  * */
 const imageDefault = {
-    src: require('./assets/img/img_skeleton.png'),
-    style: 'height: 170px',
-    class: 's-image',
+  src: require('./assets/img/img_skeleton.png'),
+  class: 's-image'
 };
 /**
  * Observer options default
  * {Object}
  * */
 const observerDefault = {
-    root: null,
-    threshold: 1,
+  root: null,
+  threshold: 0.01
 };
 
 export default {
   name: 'CoreLazyLoading',
   props: {
-    placeholderImage: {
+    placeholder: {
       type: Object,
       default: () => {
-        return imageDefault
-      },
+        return imageDefault;
+      }
     },
-
+    skeleton: {
+      type: Boolean,
+      default: true,
+    },
     options: {
       type: Object,
       default: () => {
-        return observerDefault
-      },
-    },
+        return observerDefault;
+      }
+    }
   },
+
   data() {
     return {
       observer: {},
       firstStepToLoad: true,
+      placeholderImage: {},
       image: {
         class: '',
-        src: '',
-      },
-    }
+        src: ''
+      }
+    };
   },
+
   render() {
-      return this.$slots.default;
+    return this.$slots.default;
   },
+
   mounted() {
-      this.setImageData();
-
-      this.$el.onload = this.onLoadImage;
-      this.$el.onerror = this.onErrorImage;
-
-      const observer = new IntersectionObserver(
-          this.checkIsIntersecting,
-          this.options
-      );
-
-      observer.observe(this.$el);
+    this.placeholderImage = this.placeholder
+    if(!this.skeleton) {
+      this.placeholderImage = ''
+    } else {
+      this.placeholderImage.src = require('./assets/img/img_skeleton.png')
+    }
+    this.placeholderImage.class += ' ' + imageDefault.class
+    this.setImageData();
+    this.$el.onload = this.onLoadImage;
+    this.$el.onerror = this.onErrorImage;
+    const observer = new IntersectionObserver(this.checkIsIntersecting, this.options);
+    observer.observe(this.$el);
   },
+
   methods: {
     /**
      * Start data to component
      * @returns {null}
      * */
     setImageData() {
-          this.image = {
-              src: this.$el.getAttribute('src'),
-              class: this.$el.getAttribute('class'),
-          };
-
-          this.changeElementAttribute(
-              ['class', 'style', 'src'],
-              [
-                  this.placeholderImage.class,
-                  this.placeholderImage.style,
-                  this.placeholderImage.src,
-              ]
-          );
+      this.image = {
+        src: this.$el.getAttribute('src'),
+        class: this.$el.getAttribute('class')
+      };
+      this.changeElementAttribute(['class', 'src', 'style'], [this.placeholderImage.class, this.placeholderImage.src, this.placeholderImage.style ? this.placeholderImage.style : '']);
     },
-    
+
     /**
      * Load image from finish observer
      * @returns {null}
      * */
     loadImage() {
-        this.$el.src = this.image.src;
-        this.firstStepToLoad = false;
+      this.$el.src = this.image.src;
+      this.firstStepToLoad = false;
     },
 
     /**
@@ -98,7 +98,7 @@ export default {
      * */
     onLoadImage() {
       if (!this.firstStepToLoad) {
-          this.changeElementAttribute(['class', 'style'], [this.image.class, '']);
+        this.changeElementAttribute(['class', 'style'], [this.image.class, '']);
       }
     },
 
@@ -107,10 +107,7 @@ export default {
      * @returns {null}
      * */
     onErrorImage() {
-        this.changeElementAttribute(
-            ['class', 'style', 'src'],
-            [this.image.class, '', require('./assets/img/photo.png')]
-        );
+      this.changeElementAttribute(['class', 'style', 'src'], [this.image.class, '', require('./assets/img/photo.png')]);
     },
 
     /**
@@ -119,12 +116,12 @@ export default {
      * @returns {null}
      * */
     checkIsIntersecting(entries, observer) {
-      entries.forEach((entry) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-            this.loadImage();
-            observer.unobserve(this.$el);
+          this.loadImage();
+          observer.unobserve(this.$el);
         }
-      })
+      });
     },
 
     /**
@@ -134,8 +131,9 @@ export default {
      * */
     changeElementAttribute(keys, values) {
       keys.forEach((item, index) => {
-          this.$el.setAttribute(item, values[index]);
-      })
-    },
-  },
+        this.$el.setAttribute(item, values[index]);
+      });
+    }
+
+  }
 }
