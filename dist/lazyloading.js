@@ -1,5 +1,5 @@
 /*!
- * vue-lazy-loading v0.1.10
+ * vue-lazy-loading v1.0.0
  * (c) 2016-2021 voidjmp
  * Released under the MIT License.
  */
@@ -69,15 +69,16 @@
     },
 
     mounted() {
-      this.placeholderImage = this.placeholder;
+      this.placeholderImage = this.placeholder; // skeleton check to enable
 
       if (!this.skeleton) {
         this.placeholderImage = '';
       } else {
         this.placeholderImage.src = require('./assets/img/img_skeleton.png');
+        this.placeholderImage.style = 'filter: blur(0.1vw);';
+        this.placeholderImage.class += ' ' + imageDefault.class;
       }
 
-      this.placeholderImage.class += ' ' + imageDefault.class;
       this.setImageData();
       this.$el.onload = this.onLoadImage;
       this.$el.onerror = this.onErrorImage;
@@ -153,7 +154,7 @@
     }
   };
 
-  var version = "0.1.10";
+  var version = "1.0.0";
 
   CoreLazyLoading.version = version;
 

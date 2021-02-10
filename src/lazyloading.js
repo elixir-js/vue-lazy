@@ -57,12 +57,16 @@ export default {
 
   mounted() {
     this.placeholderImage = this.placeholder
-    if(!this.skeleton) {
-      this.placeholderImage = ''
+
+    // skeleton check to enable
+    if (!this.skeleton) {
+      this.placeholderImage = '';
     } else {
-      this.placeholderImage.src = require('./assets/img/img_skeleton.png')
+      this.placeholderImage.src = require('./assets/img/img_skeleton.png');
+      this.placeholderImage.style = 'filter: blur(0.1vw);';
+      this.placeholderImage.class += ' ' + imageDefault.class
     }
-    this.placeholderImage.class += ' ' + imageDefault.class
+
     this.setImageData();
     this.$el.onload = this.onLoadImage;
     this.$el.onerror = this.onErrorImage;
