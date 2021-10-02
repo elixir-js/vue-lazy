@@ -1,28 +1,57 @@
-## Vue lazy image
+## Vue Lazzy Image Component
 
-```ecmascript 6
-npm install vue-lazzy-image 
+```sh
+npm install vue-lazzy-image
 ```
 
-## How use lib
+## How to use lib
 
-```ecmascript 6
-import lazyload from 'vue-lazzy-image'
-
+```javascript
+import CoreLazyLoading from 'vue-lazzy-image'
 ...
-
-directives: {
-  lazyload,
+components: {
+  CoreLazyLoading,
 },
 ```
 
 ## Template
 
-```ecmascript 6
-<img
-  v-lazyload
-  src="image_link"
-  class="class_name"
-  alt="alt_name"
-/>
+```javascript
+<CoreLazyLoading>
+    <img src="your_image_link" class="your_class_name" alt="your_alt_name" />
+</CoreLazyLoading>
+```
+
+## Component props
+
+Parameters, which you can pass to `vue-lazzy-image` component.
+
+| Property      |   Type    |                                                                  Description                                                                  |
+| ------------- | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
+| `skeleton`    | `boolean` |                                                          Visibility of your skeleton                                                          |
+| `placeholder` | `object`  | The placeholder which will be provided has `src` and `class` in its properties. The placeholder will be the image before loading the main one |
+| `options`     | `object`  |                                  Options of IntersctionObserver constructor for your images' parent element                                   |
+
+## Options
+
+```javascript
+<CoreLazyLoading :placeholder="{ class: 'className', style: 'height: 200px;' }">
+  <img
+    src="your_image_link"
+    class="your_class_name"
+    alt="your_alt_name"
+  />
+</CoreLazyLoading>
+```
+
+### Visible Skeleton
+
+```javascript
+<CoreLazyLoading :placeholder="{ class: 'className', style: 'height: 200px;' }" :skeleton="false">
+  <img
+    src="your_image_link"
+    class="your_class_name"
+    alt="your_alt_name"
+  />
+</CoreLazyLoading>
 ```

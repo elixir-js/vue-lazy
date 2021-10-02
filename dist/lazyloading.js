@@ -1,5 +1,5 @@
 /*!
- * vue-lazy-loading v0.1.3
+ * vue-lazy-loading v1.0.0
  * (c) 2016-2021 voidjmp
  * Released under the MIT License.
  */
@@ -20,7 +20,6 @@
    * */
   const imageDefault = {
     src: require('./assets/img/img_skeleton.png'),
-    style: 'height: 170px',
     class: 's-image'
   };
   /**
@@ -30,16 +29,20 @@
 
   const observerDefault = {
     root: null,
-    threshold: 1
+    threshold: 0.01
   };
   var CoreLazyLoading = {
     name: 'CoreLazyLoading',
     props: {
-      placeholderImage: {
+      placeholder: {
         type: Object,
         default: () => {
           return imageDefault;
         }
+      },
+      skeleton: {
+        type: Boolean,
+        default: true
       },
       options: {
         type: Object,
@@ -53,6 +56,7 @@
       return {
         observer: {},
         firstStepToLoad: true,
+        placeholderImage: {},
         image: {
           class: '',
           src: ''
@@ -65,6 +69,16 @@
     },
 
     mounted() {
+      this.placeholderImage = this.placeholder; // skeleton check to enable
+
+      if (!this.skeleton) {
+        this.placeholderImage = '';
+      } else {
+        this.placeholderImage.src = require('./assets/img/img_skeleton.png');
+        this.placeholderImage.style = 'filter: blur(0.1vw);';
+        this.placeholderImage.class += ' ' + imageDefault.class;
+      }
+
       this.setImageData();
       this.$el.onload = this.onLoadImage;
       this.$el.onerror = this.onErrorImage;
@@ -82,7 +96,7 @@
           src: this.$el.getAttribute('src'),
           class: this.$el.getAttribute('class')
         };
-        this.changeElementAttribute(['class', 'style', 'src'], [this.placeholderImage.class, this.placeholderImage.style, this.placeholderImage.src]);
+        this.changeElementAttribute(['class', 'src', 'style'], [this.placeholderImage.class, this.placeholderImage.src, this.placeholderImage.style ? this.placeholderImage.style : '']);
       },
 
       /**
@@ -140,7 +154,7 @@
     }
   };
 
-  var version = "0.1.3";
+  var version = "1.0.0";
 
   CoreLazyLoading.version = version;
 

@@ -6,9 +6,8 @@
  * {Object}
  * */
 const imageDefault = {
-    src: require('./assets/img/img_skeleton.png'),
-    style: 'height: 170px',
-    class: 's-image',
+  src: require('./assets/img/img_skeleton.png'),
+  class: 's-image'
 };
 
 const errorImageDefault = {
@@ -20,132 +19,130 @@ const errorImageDefault = {
  * {Object}
  * */
 const observerDefault = {
-    root: null,
-    threshold: 1,
+  root: null,
+  threshold: 0.01
 };
 
 export default {
-    name: 'CoreLazyLoading',
+  name: 'CoreLazyLoading',
+  props: {
+    placeholder: {
+      type: Object,
+      default: () => {
+        return imageDefault;
+      }
+    },
+    skeleton: {
+      type: Boolean,
+      default: true,
+    },
+    options: {
+      type: Object,
+      default: () => {
+        return observerDefault;
+      }
+    }
+  },
 
-    props: {
-        placeholderImage: {
-            type: Object,
-            default: () => {
-                return imageDefault;
-            },
-        },
+  data() {
+    return {
+      observer: {},
+      firstStepToLoad: true,
+      placeholderImage: {},
+      image: {
+        class: '',
+        src: ''
+      }
+    };
+  },
 
-        errorImage: {
-            type: Object,
-            default: () => {
-                return errorImageDefault;
-            },
-        },
+  render() {
+    return this.$slots.default;
+  },
 
-        options: {
-            type: Object,
-            default: () => {
-                return observerDefault;
-            },
-        },
+  mounted() {
+    this.placeholderImage = this.placeholder
+
+    // skeleton check to enable
+    if (!this.skeleton) {
+      this.placeholderImage = '';
+    } else {
+      this.placeholderImage.src = require('./assets/img/img_skeleton.png');
+      this.placeholderImage.style = 'filter: blur(0.1vw);';
+      this.placeholderImage.class += ' ' + imageDefault.class
+    }
+
+    this.setImageData();
+    this.$el.onload = this.onLoadImage;
+    this.$el.onerror = this.onErrorImage;
+    const observer = new IntersectionObserver(this.checkIsIntersecting, this.options);
+    observer.observe(this.$el);
+  },
+
+  methods: {
+    /**
+     * Start data to component
+     * @returns {null}
+     * */
+    setImageData() {
+      this.image = {
+        src: this.$el.getAttribute('src'),
+        class: this.$el.getAttribute('class')
+      };
+      this.changeElementAttribute(['class', 'src', 'style'], [this.placeholderImage.class, this.placeholderImage.src, this.placeholderImage.style ? this.placeholderImage.style : '']);
     },
 
-    data() {
-        return {
-            firstStepToLoad: true,
-            image: {
-                class: '',
-                src: '',
-            },
-        };
+    /**
+     * Load image from finish observer
+     * @returns {null}
+     * */
+    loadImage() {
+      this.$el.src = this.image.src;
+      this.firstStepToLoad = false;
     },
 
-    mounted() {
-        this.setImageData();
-
-        this.$el.onload = this.onLoadImage;
-        this.$el.onerror = this.onErrorImage;
-
-        const observer = new IntersectionObserver(this.checkIsIntersecting, this.options);
-
-        observer.observe(this.$el);
+    /**
+     * Event on load image
+     * @returns {null}
+     * */
+    onLoadImage() {
+      if (!this.firstStepToLoad) {
+        this.changeElementAttribute(['class', 'style'], [this.image.class, '']);
+      }
     },
 
-    methods: {
-        /**
-         * Start data to component
-         * @returns {null}
-         * */
-        setImageData() {
-            this.image = {
-                src: this.$el.getAttribute('src'),
-                class: this.$el.getAttribute('class'),
-            };
-
-            this.changeElementAttribute(
-                ['class', 'style', 'src'],
-                [
-                    this.placeholderImage.class,
-                    this.placeholderImage.style,
-                    this.placeholderImage.src,
-                ],
-            );
-        },
-        /**
-         * Load image from finish observer
-         * @returns {null}
-         * */
-        loadImage() {
-            this.$el.src = this.image.src;
-            this.firstStepToLoad = false;
-        },
-        /**
-         * Event on load image
-         * @returns {null}
-         * */
-        onLoadImage() {
-            if (!this.firstStepToLoad) {
-                this.changeElementAttribute(['class', 'style'], [this.image.class, '']);
-            }
-        },
-
-        // TODO: onError there should be an image from props or default
-        /**
-         * Event on error image
-         * @returns {null}
-         * */
-        onErrorImage() {
-            this.changeElementAttribute(
-                ['class', 'style', 'src'],
-                [this.image.class, '', this.errorImage.src],
-            );
-        },
-        /**
-         * Method to check intersecting event
-         * @params {Array, Observer} entries, observer
-         * @returns {null}
-         * */
-        checkIsIntersecting(entries, observer) {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    this.loadImage();
-                    observer.unobserve(this.$el);
-                }
-            });
-        },
-        /**
-         * Method to change element
-         * @params {Array, Array} keys, values
-         * @returns {null}
-         * */
-        changeElementAttribute(keys, values) {
-            keys.forEach((item, index) => {
-                this.$el.setAttribute(item, values[index]);
-            });
-        },
+    /**
+     * Event on error image
+     * @returns {null}
+     * */
+    onErrorImage() {
+      this.changeElementAttribute(['class', 'style', 'src'], [this.image.class, '', require('./assets/img/photo.png')]);
     },
 
-    render() {
-        return this.$slots.default;
+    /**
+     * Method to check intersecting event
+     * @params {Array, Observer} entries, observer
+     * @returns {null}
+     * */
+    checkIsIntersecting(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.loadImage();
+          observer.unobserve(this.$el);
+        }
+      });
     },
-};
+
+    /**
+     * Method to change element
+     * @params {Array, Array} keys, values
+     * @returns {null}
+     * */
+    changeElementAttribute(keys, values) {
+      keys.forEach((item, index) => {
+        this.$el.setAttribute(item, values[index]);
+      });
+    }
+
+  }
+}
