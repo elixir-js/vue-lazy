@@ -9,6 +9,11 @@ const imageDefault = {
   src: require('./assets/img/img_skeleton.png'),
   class: 's-image'
 };
+
+const errorImageDefault = {
+    ...imageDefault,
+    // TODO: src should be changed to another image in the future
+};
 /**
  * Observer options default
  * {Object}
